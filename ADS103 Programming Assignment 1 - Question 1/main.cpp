@@ -17,12 +17,14 @@ void main()
 	int sortedUnsorted;
 	int amountOfElements;
 
-	//reading from file works like cin
+	//reading from file and storing in variables from above
 	readFile >> ascendingDescending;
 	readFile >> sortedUnsorted;
 	readFile >> amountOfElements;
 
+	//using pointers to create dynamic size array
 	int* numbersToSort = new int[amountOfElements];
+	//variable for looping through array
 	int count1 = 0;
 
 	//looping through line 4 and storing numbers in array
@@ -36,6 +38,8 @@ void main()
 	// calling error output function
 	errorOutput(ascendingDescending, sortedUnsorted, amountOfElements, count1);
 
+	//Bubblesort in ascending order
+	//Takes starting time, runs the sorting algorythm, takes end time, stores value in time1 and outputs to file
 	if (ascendingDescending == 0 && sortedUnsorted == 0)
 	{
 		chrono::steady_clock::time_point begin = chrono::steady_clock::now();
@@ -46,7 +50,6 @@ void main()
 		//write time recorded into file
 		ofstream  writeFile;
 		writeFile.open("output-a1q1.txt");
-
 		writeFile << time1 << "ms" << endl;
 
 		// FROM: https://stackoverflow.com/questions/22190048/how-to-write-the-content-of-an-array-into-a-text-file/22190167
@@ -59,7 +62,9 @@ void main()
 		cout << "Bubble Sorted Asc" << endl;
 	}
 
-	else if (ascendingDescending == 1 && sortedUnsorted == 0)
+	//Bubblesort in descending order
+	//Takes starting time, runs the sorting algorythm, takes end time, stores value in time1 and outputs to file
+	if (ascendingDescending == 1 && sortedUnsorted == 0)
 	{
 		chrono::steady_clock::time_point begin = chrono::steady_clock::now();
 		bubbleSortDesc(numbersToSort, count1);
@@ -69,8 +74,8 @@ void main()
 		//write time recorded into file
 		ofstream  writeFile;
 		writeFile.open("output-a1q1.txt");
-
 		writeFile << time1 << "ms" << endl;
+
 		// FROM: https://stackoverflow.com/questions/22190048/how-to-write-the-content-of-an-array-into-a-text-file/22190167
 		for (int count = 0; count < amountOfElements; count++)
 		{
@@ -81,6 +86,8 @@ void main()
 		cout << "Bubble Sorted Desc" << endl;
 	}
 
+	//Quicksort in ascending order
+	//Takes starting time, runs the sorting algorythm, takes end time, stores value in time1 and outputs to file
 	if (ascendingDescending == 0 && sortedUnsorted == 1)
 	{
 		chrono::steady_clock::time_point begin = chrono::steady_clock::now();
@@ -91,7 +98,6 @@ void main()
 		//write time recorded into file
 		ofstream  writeFile;
 		writeFile.open("output-a1q1.txt");
-
 		writeFile << time1 << "ms" << endl;
 
 		// FROM: https://stackoverflow.com/questions/22190048/how-to-write-the-content-of-an-array-into-a-text-file/22190167
@@ -104,7 +110,9 @@ void main()
 		cout << "Quick Sorted Asc" << endl;
 	}
 
-	else if (ascendingDescending == 1 && sortedUnsorted == 1)
+	//Quicksort in descending order
+	//Takes starting time, runs the sorting algorythm, takes end time, stores value in time1 and outputs to file
+	if (ascendingDescending == 1 && sortedUnsorted == 1)
 	{
 		chrono::steady_clock::time_point begin = chrono::steady_clock::now();
 		quickSort(numbersToSort, 0, amountOfElements);
@@ -115,7 +123,6 @@ void main()
 		//write time recorded into file
 		ofstream  writeFile;
 		writeFile.open("output-a1q1.txt");
-
 		writeFile << time1 << "ms" << endl;
 
 		// FROM: https://stackoverflow.com/questions/22190048/how-to-write-the-content-of-an-array-into-a-text-file/22190167
@@ -128,7 +135,6 @@ void main()
 		cout << "Quick Sorted Desc" << endl;
 	}
 
+	//deleting the temp array to avoid memory leak
 	delete[] numbersToSort;
-
-
 }
